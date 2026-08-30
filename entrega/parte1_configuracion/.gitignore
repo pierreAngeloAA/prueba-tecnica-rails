@@ -1,0 +1,18 @@
+# Configuracion local de bundler.
+/.bundle
+
+# Variables de entorno.
+/.env*
+
+# Logs y temporales.
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+/tmp/pids/*
+!/tmp/pids/.keep
+
+/public/assets
+
+# Clave que descifra las credenciales: nunca al repositorio.
+/config/master.key
