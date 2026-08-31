@@ -1,6 +1,6 @@
 # Parte 4 — Video explicativo
 
-**Parte elegida:** Parte 3 — función de reserva de inventario en PL/pgSQL.
+**Parte elegida:** Parte 2 — planificador de corte de material.
 
 **Enlace:** _(pendiente de subir)_
 
@@ -8,13 +8,15 @@
 
 ## De qué trata
 
-De una sola decisión, que es lo que pide el enunciado: **por qué el bloqueo es
-`FOR UPDATE` y no `FOR UPDATE SKIP LOCKED`**, que es el reflejo automático al ver
-consumo concurrente de filas.
+De una sola decisión, que es lo que pide el enunciado: **por qué las piezas se colocan
+de mayor a menor**, y por qué casi toda la calidad del plan viene de ese orden y no del
+algoritmo de colocación.
 
-Saltarse un lote bloqueado rompería el FIFO y, sobre todo, declararía inventario
-insuficiente cuando el material sí estaba y solo estaba ocupado un instante. Ese
-`backordered` falso detiene una orden de producción: la base de datos queda
-perfectamente consistente y la planta, parada.
+Las piezas largas son las difíciles de ubicar. Empezando por las cortas, las barras se
+llenan de fragmentos y las largas acaban obligando a abrir barras nuevas solo para
+ellas; al revés, las cortas rellenan los huecos que dejan las largas.
 
-El razonamiento completo está en [../parte3_postgres/NOTAS.md](../parte3_postgres/NOTAS.md).
+Incluye la alternativa descartada —Best Fit Decreasing, implementada como
+`ShortestRemnantFirst`— y su coste medido: un 21 % más de barras con 5.000 piezas.
+
+El razonamiento completo está en [../parte2_corte/NOTAS.md](../parte2_corte/NOTAS.md).
