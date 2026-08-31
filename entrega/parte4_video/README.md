@@ -2,7 +2,7 @@
 
 **Parte elegida:** Parte 2 — planificador de corte de material.
 
-**Enlace:** _(pendiente de subir)_
+**Enlace:** https://drive.google.com/file/d/1imZyKxhlKG-r7A2ThpEwJhdRH42W1MuO/view?usp=drive_link
 
 **Duración:** máximo 3 minutos · formato MP4
 
