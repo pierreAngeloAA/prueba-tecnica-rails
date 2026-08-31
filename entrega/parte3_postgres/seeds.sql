@@ -5,7 +5,7 @@ TRUNCATE stock_movements, reservation_requests, stock_lots, materials RESTART ID
 
 -- Almacenes: 1 (principal) y 2 (secundario). No hay tabla de almacenes en el
 -- esquema; existen porque tienen lotes. El 99 no existe.
-INSERT INTO materials (id, code, unit) OVERRIDING SYSTEM VALUE VALUES
+INSERT INTO materials (id, code, unit) VALUES
   (1, 'ALU-6063-T5', 'kg'),   -- material con varios lotes
   (2, 'VID-LAM-6MM', 'm2'),   -- material con un unico lote grande
   (3, 'SIL-NEUTRO',  'un'),   -- material SIN lotes en ningun almacen
@@ -13,7 +13,7 @@ INSERT INTO materials (id, code, unit) OVERRIDING SYSTEM VALUE VALUES
 
 SELECT setval('materials_id_seq', 10);
 
-INSERT INTO stock_lots (id, material_id, warehouse_id, quantity, received_at) OVERRIDING SYSTEM VALUE VALUES
+INSERT INTO stock_lots (id, material_id, warehouse_id, quantity, received_at) VALUES
   -- ALU-6063-T5 en el almacen 1: cuatro lotes, deliberadamente insertados
   -- desordenados para que el FIFO se note (el mas antiguo es el id 4).
   (1, 1, 1, 100.0000, '2026-03-10 08:00+00'),
@@ -30,7 +30,7 @@ INSERT INTO stock_lots (id, material_id, warehouse_id, quantity, received_at) OV
 
 SELECT setval('stock_lots_id_seq', 100);
 
-INSERT INTO reservation_requests (id, production_order_id, material_id, quantity_required) OVERRIDING SYSTEM VALUE VALUES
+INSERT INTO reservation_requests (id, production_order_id, material_id, quantity_required) VALUES
   (1,  9001, 1,  60.0000),   -- cabe entero en el lote mas antiguo (75)
   (2,  9002, 1, 200.0000),   -- necesita varios lotes
   (3,  9003, 1, 475.0000),   -- agota el inventario del almacen 1 justo
