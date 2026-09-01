@@ -1,0 +1,7 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+# El planificador es Ruby puro y no depende de nada. Aqui solo esta el
+# framework de pruebas, que el enunciado permite expresamente.
+gem "rspec", "~> 3.13"
