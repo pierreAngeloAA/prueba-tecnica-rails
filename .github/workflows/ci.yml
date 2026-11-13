@@ -1,0 +1,73 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main, staging]
+
+jobs:
+  parte1:
+    name: Parte 1 — configuración efectiva (RSpec)
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: entrega/parte1_configuracion
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports: ["5432:5432"]
+        options: --health-cmd="pg_isready -U postgres" --health-interval=10s --health-timeout=5s --health-retries=5
+    env:
+      RAILS_ENV: test
+      PGHOST: localhost
+      PGUSER: postgres
+      PGPASSWORD: postgres
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ruby/setup-ruby@v1
+        with:
+          working-directory: entrega/parte1_configuracion
+          bundler-cache: true
+      - run: bin/rails db:create db:schema:load
+      - run: bundle exec rspec
+
+  parte2:
+    name: Parte 2 — planificador de corte (RSpec)
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: entrega/parte2_corte
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ruby/setup-ruby@v1
+        with:
+          working-directory: entrega/parte2_corte
+          bundler-cache: true
+      - run: bundle exec rspec
+
+  parte3:
+    name: Parte 3 — reserve_material en PL/pgSQL
+    runs-on: ubuntu-24.04
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: parte3_reservas
+        ports: ["5432:5432"]
+        options: --health-cmd="pg_isready -U postgres" --health-interval=10s --health-timeout=5s --health-retries=5
+    env:
+      PGHOST: localhost
+      PGUSER: postgres
+      PGPASSWORD: postgres
+    defaults:
+      run:
+        working-directory: entrega/parte3_postgres
+    steps:
+      - uses: actions/checkout@v6
+      - name: Schema, function, seeds and the 12 test cases
+        run: psql -v ON_ERROR_STOP=1 -d parte3_reservas -f schema.sql -f reserve_material.sql -f seeds.sql -f test.sql
