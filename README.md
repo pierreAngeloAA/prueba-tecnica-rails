@@ -1,8 +1,6 @@
-# Prueba técnica — Desarrollador Ruby on Rails
+# Reto técnico — Desarrollador Ruby on Rails
 
 [![CI](https://github.com/pierreAngeloAA/prueba-tecnica-rails/actions/workflows/ci.yml/badge.svg?branch=staging)](https://github.com/pierreAngeloAA/prueba-tecnica-rails/actions/workflows/ci.yml)
-
-Energía Solar S.A. E.S.P. — Grupo Tecnoglass · Área de Investigación y Desarrollo
 
 Tres ejercicios de código, un video explicativo y tres preguntas cortas. Cada parte es
 independiente y se ejecuta por separado.
