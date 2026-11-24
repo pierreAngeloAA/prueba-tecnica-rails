@@ -1,6 +1,4 @@
-# Prueba técnica — Desarrollador Ruby on Rails
-
-Energía Solar S.A. E.S.P. — Grupo Tecnoglass · Área de Investigación y Desarrollo
+# Reto técnico — Desarrollador Ruby on Rails
 
 Tres ejercicios de código, un video explicativo y tres preguntas cortas. Cada parte es
 independiente y se ejecuta por separado.
